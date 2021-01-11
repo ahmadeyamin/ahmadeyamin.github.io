@@ -1691,4 +1691,4 @@ function u(t){!function(t,e){t.INTERNAL.registerComponent(new o["a"]("firestore"
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */var f=function(){function t(t){this.name=t,this.providers=new Map}return t.prototype.addComponent=function(t){var e=this.getProvider(t.name);if(e.isComponentSet())throw new Error("Component "+t.name+" has already been registered with "+this.name);e.setComponent(t)},t.prototype.addOrOverwriteComponent=function(t){var e=this.getProvider(t.name);e.isComponentSet()&&this.providers.delete(t.name),this.addComponent(t)},t.prototype.getProvider=function(t){if(this.providers.has(t))return this.providers.get(t);var e=new u(t,this);return this.providers.set(t,e),e},t.prototype.getProviders=function(){return Array.from(this.providers.values())},t}()}}]);
-//# sourceMappingURL=chunk-vendors.a1d1ed16.js.map
+//# sourceMappingURL=chunk-vendors.bd435ec7.js.map
