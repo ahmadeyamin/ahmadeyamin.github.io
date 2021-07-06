@@ -437,7 +437,7 @@ module.exports = function (METHOD_NAME, argument) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals window, document, navigator, WEBFLOW_ENV_TEST */
 
@@ -494,12 +494,12 @@ WTF.require = function (name) {
 function bindModule(module) {
   // If running in WTF app, subscribe to design/preview events
   if (WTF.env()) {
-    isFunction(module.design) && $win.on('__wf_design', module.design);
-    isFunction(module.preview) && $win.on('__wf_preview', module.preview);
+    isFunction(module.design) && $win.on('__itf_design', module.design);
+    isFunction(module.preview) && $win.on('__itf_preview', module.preview);
   } // Subscribe to front-end destroy event
 
 
-  isFunction(module.destroy) && $win.on('__wf_destroy', module.destroy); // Look for ready method on module
+  isFunction(module.destroy) && $win.on('__itf_destroy', module.destroy); // Look for ready method on module
 
   if (module.ready && isFunction(module.ready)) {
     addReady(module);
@@ -523,9 +523,9 @@ function addReady(module) {
 
 function unbindModule(module) {
   // Unsubscribe module from window events
-  isFunction(module.design) && $win.off('__wf_design', module.design);
-  isFunction(module.preview) && $win.off('__wf_preview', module.preview);
-  isFunction(module.destroy) && $win.off('__wf_destroy', module.destroy); // Remove ready method from primary queue
+  isFunction(module.design) && $win.off('__itf_design', module.design);
+  isFunction(module.preview) && $win.off('__itf_preview', module.preview);
+  isFunction(module.destroy) && $win.off('__itf_destroy', module.destroy); // Remove ready method from primary queue
 
   if (module.ready && isFunction(module.ready)) {
     removeReady(module);
@@ -561,7 +561,7 @@ WTF.push = function (ready) {
 
 
 WTF.env = function (mode) {
-  var designFlag = window.__wf_design;
+  var designFlag = window.__itf_design;
   var inApp = typeof designFlag !== 'undefined';
 
   if (!mode) {
@@ -577,7 +577,7 @@ WTF.env = function (mode) {
   }
 
   if (mode === 'slug') {
-    return inApp && window.__wf_slug;
+    return inApp && window.__itf_slug;
   }
 
   if (mode === 'editor') {
@@ -585,7 +585,7 @@ WTF.env = function (mode) {
   }
 
   if (mode === 'test') {
-    return  false || window.__wf_test;
+    return  false || window.__itf_test;
   }
 
   if (mode === 'frame') {
@@ -742,7 +742,7 @@ function bindLoad() {
 WTF.destroy = function (options) {
   options = options || {};
   destroyed = true;
-  $win.triggerHandler('__wf_destroy'); // Allow domready reset for tests
+  $win.triggerHandler('__itf_destroy'); // Allow domready reset for tests
 
   if (options.domready != null) {
     domready = options.domready;
@@ -4011,7 +4011,7 @@ module.exports = LazyWrapper;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* eslint-disable eslint-comments/no-unlimited-disable */
 
@@ -6072,7 +6072,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// @wf-will-never-add-flow-to-this-file
+// @itf-will-never-add-flow-to-this-file
 
 /* globals window, document */
 
@@ -8553,7 +8553,7 @@ module.exports = __webpack_require__(390);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* eslint-disable no-var */
 
@@ -8579,7 +8579,7 @@ WTF.define('lottie', module.exports = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 // Include tram for frame-throttling
 
 /* globals window */
@@ -27700,7 +27700,7 @@ GroupEffect.prototype.init = function(data,element){
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals document, window, navigator */
 
@@ -27725,8 +27725,8 @@ WTF.define('brand', module.exports = function ($) {
   // Module methods
 
   api.ready = function () {
-    var shouldBrand = $html.attr('data-wf-status');
-    var publishedDomain = $html.attr('data-wf-domain') || '';
+    var shouldBrand = $html.attr('data-itf-status');
+    var publishedDomain = $html.attr('data-itf-domain') || '';
 
     if (/\.wtf\.io$/i.test(publishedDomain) && location.hostname !== publishedDomain) {
       shouldBrand = true;
@@ -27791,7 +27791,7 @@ WTF.define('brand', module.exports = function ($) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// @wf-will-never-add-flow-to-this-file
+// @itf-will-never-add-flow-to-this-file
 
 /* globals window */
 
@@ -27809,22 +27809,22 @@ var eventQueue = [];
 var namespace = '.w-ix';
 var eventTriggers = {
   reset: function reset(i, el) {
-    el.__wf_intro = null;
+    el.__itf_intro = null;
   },
   intro: function intro(i, el) {
-    if (el.__wf_intro) {
+    if (el.__itf_intro) {
       return;
     }
 
-    el.__wf_intro = true;
+    el.__itf_intro = true;
     $(el).triggerHandler(api.types.INTRO);
   },
   outro: function outro(i, el) {
-    if (!el.__wf_intro) {
+    if (!el.__itf_intro) {
       return;
     }
 
-    el.__wf_intro = null;
+    el.__itf_intro = null;
     $(el).triggerHandler(api.types.OUTRO);
   }
 };
@@ -27871,7 +27871,7 @@ module.exports = api;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* eslint-disable no-var */
 
@@ -28605,11 +28605,11 @@ exports.IX2_TEST_FRAME_RENDERED = IX2_TEST_FRAME_RENDERED;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RENDER_PLUGIN = exports.RENDER_STYLE = exports.RENDER_GENERAL = exports.RENDER_TRANSFORM = exports.ABSTRACT_NODE = exports.PLAIN_OBJECT = exports.HTML_ELEMENT = exports.PRESERVE_3D = exports.PARENT = exports.SIBLINGS = exports.IMMEDIATE_CHILDREN = exports.CHILDREN = exports.BAR_DELIMITER = exports.COLON_DELIMITER = exports.COMMA_DELIMITER = exports.AUTO = exports.WILL_CHANGE = exports.FLEX = exports.DISPLAY = exports.COLOR = exports.BORDER_COLOR = exports.BACKGROUND = exports.BACKGROUND_COLOR = exports.HEIGHT = exports.WIDTH = exports.FILTER = exports.OPACITY = exports.SKEW_Y = exports.SKEW_X = exports.SKEW = exports.ROTATE_Z = exports.ROTATE_Y = exports.ROTATE_X = exports.SCALE_3D = exports.SCALE_Z = exports.SCALE_Y = exports.SCALE_X = exports.TRANSLATE_3D = exports.TRANSLATE_Z = exports.TRANSLATE_Y = exports.TRANSLATE_X = exports.TRANSFORM = exports.CONFIG_UNIT = exports.CONFIG_Z_UNIT = exports.CONFIG_Y_UNIT = exports.CONFIG_X_UNIT = exports.CONFIG_VALUE = exports.CONFIG_Z_VALUE = exports.CONFIG_Y_VALUE = exports.CONFIG_X_VALUE = exports.BOUNDARY_SELECTOR = exports.W_MOD_IX = exports.W_MOD_JS = exports.WF_PAGE = exports.IX2_ID_DELIMITER = void 0;
+exports.RENDER_PLUGIN = exports.RENDER_STYLE = exports.RENDER_GENERAL = exports.RENDER_TRANSFORM = exports.ABSTRACT_NODE = exports.PLAIN_OBJECT = exports.HTML_ELEMENT = exports.PRESERVE_3D = exports.PARENT = exports.SIBLINGS = exports.IMMEDIATE_CHILDREN = exports.CHILDREN = exports.BAR_DELIMITER = exports.COLON_DELIMITER = exports.COMMA_DELIMITER = exports.AUTO = exports.WILL_CHANGE = exports.FLEX = exports.DISPLAY = exports.COLOR = exports.BORDER_COLOR = exports.BACKGROUND = exports.BACKGROUND_COLOR = exports.HEIGHT = exports.WIDTH = exports.FILTER = exports.OPACITY = exports.SKEW_Y = exports.SKEW_X = exports.SKEW = exports.ROTATE_Z = exports.ROTATE_Y = exports.ROTATE_X = exports.SCALE_3D = exports.SCALE_Z = exports.SCALE_Y = exports.SCALE_X = exports.TRANSLATE_3D = exports.TRANSLATE_Z = exports.TRANSLATE_Y = exports.TRANSLATE_X = exports.TRANSFORM = exports.CONFIG_UNIT = exports.CONFIG_Z_UNIT = exports.CONFIG_Y_UNIT = exports.CONFIG_X_UNIT = exports.CONFIG_VALUE = exports.CONFIG_Z_VALUE = exports.CONFIG_Y_VALUE = exports.CONFIG_X_VALUE = exports.BOUNDARY_SELECTOR = exports.W_MOD_IX = exports.W_MOD_JS = exports.itf_PAGE = exports.IX2_ID_DELIMITER = void 0;
 var IX2_ID_DELIMITER = '|';
 exports.IX2_ID_DELIMITER = IX2_ID_DELIMITER;
-var WF_PAGE = 'data-wf-page';
-exports.WF_PAGE = WF_PAGE;
+var itf_PAGE = 'data-itf-page';
+exports.itf_PAGE = itf_PAGE;
 var W_MOD_JS = 'w-mod-js';
 exports.W_MOD_JS = W_MOD_JS;
 var W_MOD_IX = 'w-mod-ix';
@@ -32450,7 +32450,7 @@ var _constants$IX2EngineC = _constants.IX2EngineConstants,
     IX2_ID_DELIMITER = _constants$IX2EngineC.IX2_ID_DELIMITER,
     HTML_ELEMENT = _constants$IX2EngineC.HTML_ELEMENT,
     PLAIN_OBJECT = _constants$IX2EngineC.PLAIN_OBJECT,
-    WF_PAGE = _constants$IX2EngineC.WF_PAGE;
+    itf_PAGE = _constants$IX2EngineC.itf_PAGE;
 
 function setStyle(element, prop, value) {
   // $FlowIgnore — flow complains that prop should be a number. Will need to update upstream
@@ -32487,7 +32487,7 @@ function getQuerySelector(_ref) {
       nodeId = pair[1]; // Short circuit query if we're on the wrong page
       // $FlowIgnore — if documentElement is null crash
 
-      if (pageId !== document.documentElement.getAttribute(WF_PAGE)) {
+      if (pageId !== document.documentElement.getAttribute(itf_PAGE)) {
         return null;
       }
     }
@@ -32500,7 +32500,7 @@ function getQuerySelector(_ref) {
 
 function getValidDocument(pageId) {
   if (pageId == null || // $FlowIgnore — if documentElement is null crash
-  pageId === document.documentElement.getAttribute(WF_PAGE)) {
+  pageId === document.documentElement.getAttribute(itf_PAGE)) {
     return document;
   }
 
@@ -34111,7 +34111,7 @@ module.exports = baseClamp;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals window, document */
 
@@ -34241,7 +34241,7 @@ WTF.define('links', module.exports = function ($, _) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals window, document */
 
@@ -34262,8 +34262,8 @@ WTF.define('scroll', module.exports = function ($) {
    * @typedef {Object.<string>} NamespacedEventsCollection
    */
   var NS_EVENTS = {
-    WF_CLICK_EMPTY: 'click.wf-empty-link',
-    WF_CLICK_SCROLL: 'click.wf-scroll'
+    itf_CLICK_EMPTY: 'click.itf-empty-link',
+    itf_CLICK_SCROLL: 'click.itf-scroll'
   };
   var loc = window.location;
   var history = inIframe() ? null : window.history;
@@ -34314,7 +34314,7 @@ WTF.define('scroll', module.exports = function ($) {
   var reducedMotionMediaQuery = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function reducedMotionEnabled() {
-    return document.body.getAttribute('data-wf-scroll-motion') === 'none' || reducedMotionMediaQuery.matches;
+    return document.body.getAttribute('data-itf-scroll-motion') === 'none' || reducedMotionMediaQuery.matches;
   }
   /**
    * Determine if we should execute custom scroll
@@ -34427,9 +34427,9 @@ WTF.define('scroll', module.exports = function ($) {
   }
 
   function ready() {
-    var WF_CLICK_EMPTY = NS_EVENTS.WF_CLICK_EMPTY,
-        WF_CLICK_SCROLL = NS_EVENTS.WF_CLICK_SCROLL;
-    $doc.on(WF_CLICK_SCROLL, localHrefSelector, validateScroll);
+    var itf_CLICK_EMPTY = NS_EVENTS.itf_CLICK_EMPTY,
+        itf_CLICK_SCROLL = NS_EVENTS.itf_CLICK_SCROLL;
+    $doc.on(itf_CLICK_SCROLL, localHrefSelector, validateScroll);
     /**
      * Prevent empty hash links from triggering scroll.
      * Legacy feature to preserve: use the default "#" link
@@ -34437,7 +34437,7 @@ WTF.define('scroll', module.exports = function ($) {
      * to scroll to the top.
      */
 
-    $doc.on(WF_CLICK_EMPTY, emptyHrefSelector, function (e) {
+    $doc.on(itf_CLICK_EMPTY, emptyHrefSelector, function (e) {
       e.preventDefault();
     });
   } // Export module
@@ -34453,7 +34453,7 @@ WTF.define('scroll', module.exports = function ($) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals document, window */
 
@@ -34594,7 +34594,7 @@ WTF.define('touch', module.exports = function ($) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals
   window,
@@ -34648,7 +34648,7 @@ WTF.define('forms', module.exports = function ($, _) {
   };
 
   function init() {
-    siteId = $('html').attr('data-wf-site');
+    siteId = $('html').attr('data-itf-site');
     formUrl = "https://wtf.com" + '/api/v1/form/' + siteId; // Work around same-protocol IE XDR limitation - without this IE9 and below forms won't submit
 
     if (retro && formUrl.indexOf("https://wtf.com") >= 0) {
@@ -35188,7 +35188,7 @@ module.exports = _nonIterableRest;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // @wf-will-never-add-flow-to-this-file
+ // @itf-will-never-add-flow-to-this-file
 
 /* globals window, document */
 
@@ -35224,7 +35224,7 @@ WTF.define('navbar', module.exports = function ($, _) {
   var designer;
   var inEditor;
   var inApp = WTF.env();
-  var overlay = '<div class="w-nav-overlay" data-wf-ignore />';
+  var overlay = '<div class="w-nav-overlay" data-itf-ignore />';
   var namespace = '.w-nav';
   var navbarOpenedButton = 'w--open';
   var navbarOpenedDropdown = 'w--nav-dropdown-open';
