@@ -67,7 +67,7 @@
   border-bottom-color: #3898ec;
   border-left-color: #3898ec;
   border-right-color: #3898ec;
-  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg');
+  background-image: url(https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg);
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -494,6 +494,13 @@ a {
   background-size: auto, cover;
 }
 
+.section.projects-page-top._404 {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe894), to(rgba(114, 107, 255, 0.44))), url("../images/Buttercup.jpg");
+  background-image: linear-gradient(180deg, #ffe894, rgba(114, 107, 255, 0.44)), url("../images/Buttercup.jpg");
+  background-size: auto, cover;
+  background-repeat: repeat, no-repeat;
+}
+
 .section.service-page-top {
   min-height: 600px;
   background-image: linear-gradient(113deg, rgba(255, 160, 147, 0.56), rgba(255, 255, 255, 0.5)), url('../images/Rainbow-Vortex.svg');
@@ -561,6 +568,14 @@ a {
 
 .section.blog_body {
   padding-top: 40px;
+}
+
+.section.team-page-top {
+  min-height: 600px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(76%, rgba(255, 255, 255, 0)), to(rgba(255, 85, 0, 0.56))), url("../images/Viole-Red.jpg");
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 76%, rgba(255, 85, 0, 0.56)), url("../images/Viole-Red.jpg");
+  background-position: 0px 0px, 50% 50%;
+  background-size: auto, cover;
 }
 
 .partical-1 {
@@ -668,6 +683,7 @@ a {
 .arrow-down {
     position: absolute;
     left: 50%;
+  	z-index: 1;
     width: 70px;
     height: 80px;
     margin-top: -80px;
@@ -678,6 +694,9 @@ a {
     padding-bottom: 10px;
     padding-left: 10px;
     justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
     align-items: center;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -1348,8 +1367,6 @@ a {
   display: inline-block;
   margin-top: 20px;
   padding: 15px 25px;
-  border-radius: 30px;
-  background-color: transparent;
   font-family: 'Road rage', sans-serif;
   color: #333;
   font-size: 16px;
@@ -3141,6 +3158,27 @@ a {
   font-weight: 600;
 }
 
+._404_img-src {
+  width: 50vw;
+}
+
+._404_text {
+  margin-top: 60px;
+  font-family: Exo, sans-serif;
+  text-align: center;
+}
+
+.bold-text {
+  color: #444;
+}
+
+.team_text {
+  font-family: Lato, sans-serif;
+  color: #3d3d3d;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
 @media screen and (min-width: 1280px) {
   h1 {
     margin-top: 0px;
@@ -3854,6 +3892,10 @@ a {
     font-size: 2.8rem;
     line-height: 1em;
   }
+
+  .team_text {
+    font-size: 2.4rem;
+  }
 }
 
 .grid-1 {
@@ -3964,34 +4006,38 @@ a {
   font-style: normal;
   font-display: swap;
 }
-.main-nav,.hero-right_inner{
-	backdrop-filter: blur(3px);
+.main-nav,
+.hero-right_inner {
+  backdrop-filter: blur(3px);
 }
-.my-market{
-	backdrop-filter: blur(25px);
+
+.my-market {
+  backdrop-filter: blur(25px);
 }
-::-moz-selection { /* Firefox */
-    color: #fff;
-    background: #000;
+
+::-moz-selection {
+  /* Firefox */
+  color: #fff;
+  background: #000;
 }
 ::selection {
-    color: #fff;
-    background: #000;
+  color: #fff;
+  background: #000;
 }
 .uni-cta-svg {
-    -webkit-filter: drop-shadow(0px 0px 10px #ec6d60);
-    filter: drop-shadow(0px 0px 10px #ec6d60);
-    transition: filter ease 300ms;
-    -webkit-transition: -webkit-filter ease 300ms;
+  -webkit-filter: drop-shadow(0px 0px 10px #ec6d60);
+  filter: drop-shadow(0px 0px 10px #ec6d60);
+  transition: filter ease 300ms;
+  -webkit-transition: -webkit-filter ease 300ms;
 }
 
 .uni-cta-svg-wrap:hover .uni-cta-svg {
-    -webkit-filter: drop-shadow(0px 0px 20px #ec6d60);
-    filter: drop-shadow(0px 0px 20px #ec6d60);
+  -webkit-filter: drop-shadow(0px 0px 20px #ec6d60);
+  filter: drop-shadow(0px 0px 20px #ec6d60);
 }
 
 .stock-text {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px #8a52e7;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #8a52e7;
 }
